@@ -1,6 +1,9 @@
 package com.github.wslf.geocalculator;
 
+import com.github.wslf.datastructures.pair.Pair;
 import static java.lang.Math.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,5 +21,14 @@ public class DistanceCalculator {
         double l = acos(t1 + t2);
         double d = R * l;
         return (int) d;
+    }
+
+    public ArrayList<Pair<Address, Integer>> getDistance(Address point, List<Address> list) {
+        ArrayList<Pair<Address, Integer>> res = new ArrayList<>();
+        for (Address item : list) {
+            int d = getDistance(item, point);
+            res.add(new Pair<>(item, d));
+        }
+        return res;
     }
 }

@@ -42,6 +42,10 @@ public class Locator {
             System.out.println(adr.text + "\t" + adr.latitude + "\t" + adr.longitude);
         }
 
+        DistanceCalculator distanceCalculator = new DistanceCalculator();
+        System.out.println(distanceCalculator.getDistance(metro.get(0), metro.get(1)));
+        System.out.println(distanceCalculator.getDistance(metro.get(2), metro.get(2)));
+        
     }
 
     ArrayList<Address> findMetro(String city) {
