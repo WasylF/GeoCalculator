@@ -12,7 +12,8 @@ import java.util.List;
  * @author Wsl_F
  */
 public class ClosestMetro {
-
+    private static final String delim = ";";
+    
     public void findClosest(String input, String output) {
         Locator locator = new Locator();
         ArrayList<String> result = new ArrayList();
@@ -29,8 +30,9 @@ public class ClosestMetro {
             int d1 = closest.get(0).getSecond();
             int d2 = closest.get(1).getSecond();
             int d3 = closest.get(2).getSecond();
-
-            result.add(address.text + "," + d1 + "," + d2 + "," + d3);
+            
+            int average = (d1+d2+d3)/3;
+            result.add(address.text + delim + average);
         }
         Writer writer = new Writer();
         writer.write(result, output, "\n");
@@ -50,7 +52,7 @@ public class ClosestMetro {
         ArrayList<Address> addresses = new ArrayList<>();
         ArrayList<String> bad = new ArrayList<>();
         for (String line : lines) {
-            String[] record = line.split(",");
+            String[] record = line.split(delim);
             double lat = 0;
             double lng = 0;
             try {
@@ -71,6 +73,6 @@ public class ClosestMetro {
 
     public static void main(String[] args) {
         ClosestMetro closestMetro = new ClosestMetro();
-        closestMetro.findClosest("data.csv", "data+metro.csv");
+        closestMetro.findClosest("inputKostya.csv", "input.csv");
     }
 }
